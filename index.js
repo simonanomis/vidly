@@ -1,6 +1,6 @@
 require('express-async-errors');
 const winston = require('winston');
-require('winston-mongodb');
+require('winston-mongodb').MongoDB;
 const error = require('./middleware/error');
 const config = require('config');
 const Joi = require('joi');
@@ -18,12 +18,24 @@ const app = express();
 process.on('uncaughtException', ex => {
   console.log('WE GOT UNCAUGHT EXCEPTION');
   winston.error(ex.message, ex);
+  process.exit(1);
+});
+
+winston.exceptions.handle(
+  new winston.transports.File({filename: 'uncaughtExections.log'}));
+
+process.on('unhandledRejection', ex => {
+  throw ex;
 });
 
 winston.add(new winston.transports.File({ filename: 'logfile.log' }));
 winston.add(new winston.transports.MongoDB, {
-  db: 'localhost/vidly', level: 'info'
+  db: 'localhost/vidly', 
+  level: 'info'
 });
+
+const p = Promise.reject(new Error('Something failed'));
+p.then(() => console.log('Done'));
 
 if(!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined');
