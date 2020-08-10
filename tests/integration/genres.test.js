@@ -33,5 +33,11 @@ describe('/api/genres', () => {
             expect(response.status).toBe(200);
             expect(response.body).toHaveProperty('name', genre.name);
         });
+
+        it('should return 404 if invalid id is passed', async () => {
+            const response = await request(server).get('/api/genres/1');
+
+            expect(response.status).toBe(404);
+        });
     });
 });
