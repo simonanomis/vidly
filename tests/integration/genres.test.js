@@ -8,8 +8,8 @@ let server;
 describe('/api/genres', () => {
   beforeEach(() => { server = require('../../index'); })
   afterEach(async () => { 
-    server.close(); 
     await Genre.remove({});
+    server.close();     
   });
 
   describe('GET /', () => {

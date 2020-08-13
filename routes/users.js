@@ -1,4 +1,4 @@
-const authorization = require('../middleware/auth');
+const authorization = require('../middleware/auth').default;
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const _= require('lodash');

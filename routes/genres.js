@@ -1,5 +1,5 @@
 const validateObjectId = require('../middleware/validateObjectId');
-const auth = require('../middleware/auth');
+const auth = require('../middleware/auth').default;
 const admin = require('../middleware/admin');
 const {Genre, validate} = require('../models/genre');
 const mongoose = require('mongoose');
