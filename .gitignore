@@ -2,4 +2,4 @@
 node_modules/
 logfile.log
 uncaughtExections.log
-covarage/
+coverage/
