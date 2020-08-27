@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --verbose"
+    "test": "jest --watchAll --verbose",
+    "start": "npm index.js"
+  },
+  "engines": {
+    "node": "12.13.1"
   },
   "keywords": [],
   "author": "",
